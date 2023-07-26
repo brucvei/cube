@@ -9,7 +9,7 @@ int width = 160, height = 44;
 float zBuffer[160 * 44];
 char buffer[160 * 44];
 //int background = ".";
-int distance = 100;
+int distance = 20;
 float incrementSpeed = 0.6, K1 = 40;
 float x, y, z, ooz, horizontalOffset;
 int xp, yp, idx;
@@ -96,7 +96,7 @@ int main (){
 //            }
 //        }
         printf("\x1b[H");
-        for (int k = 0; k < width * height; ++k) {
+        for (int k = 0; k < width * height; k++) {
             putchar((k % width) ? buffer[k] : 10);
         }
         A += 0.05;
