@@ -1,15 +1,14 @@
 #include <string.h>
 #include <unistd.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include <math.h>
 
 float A, B, C;
 float cubeWidth = 10;
-float width = 160, height = 44;
+int width = 160, height = 44;
 float zBuffer[160 * 44];
 char buffer[160 * 44];
-int *background = " ";
+//int background = ".";
 int distance = 60;
 float incrementSpeed = 0.6, K1 = 40;
 float x, y, z, ooz;
@@ -30,7 +29,7 @@ float calculateZ(int i, int j, int k){
     return k * cos(A) * cos(B) - j * sin(A) * cos(B) + i * sin(B);
 }
 
-void calculateForSurface(float cubeX, float cubeY, float cubeZ, int ch){
+void calculateForSurface(float cubeX, float cubeY, float cubeZ, char ch){
     x = calculateX(cubeX, cubeY, cubeZ);
     y = calculateY(cubeX, cubeY, cubeZ);
     z = calculateZ(cubeX, cubeY, cubeZ) + distance;
@@ -45,11 +44,15 @@ void calculateForSurface(float cubeX, float cubeY, float cubeZ, int ch){
     }
 }
 
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "EndlessLoop"
+#pragma clang diagnostic ignored "-Wpointer-to-int-cast"
+#pragma ide diagnostic ignored "cert-flp30-c"
 int main (){
     printf("\x1b[2J");
 
     while (1){
-        memset(buffer, *background, width * height);
+        memset(buffer, (int) ".", width * height);
         memset(zBuffer, 0, width * height * 4);
         for (float cubeX = -cubeWidth; cubeX < cubeWidth; cubeX += incrementSpeed) {
             for (float cubeY = -cubeWidth; cubeY < cubeWidth; cubeY += incrementSpeed) {
@@ -58,11 +61,13 @@ int main (){
         }
         printf("\x1b[H");
         for (int k = 0; k < width * height; ++k) {
-            putchar((int) k % width ? buffer[k] : 10);
+            putchar((k % width) ? buffer[k] : 10);
         }
         A += 0.005;
         B += 0.005;
+        usleep(8000 * 2);
     }
     return 0;
 }
+#pragma clang diagnostic pop
 // https://youtu.be/p09i_hoFdd0?t=811

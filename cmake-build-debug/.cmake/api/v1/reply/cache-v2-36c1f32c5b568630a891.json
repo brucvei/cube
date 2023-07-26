@@ -1044,6 +1044,18 @@
 			],
 			"type" : "STATIC",
 			"value" : "/home/bruna/CLionProjects/cube"
+		},
+		{
+			"name" : "string_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for string."
+				}
+			],
+			"type" : "PATH",
+			"value" : "string_DIR-NOTFOUND"
 		}
 	],
 	"kind" : "cache",

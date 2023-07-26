@@ -195,6 +195,9 @@ cube_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 cube_SOURCE_DIR:STATIC=/home/bruna/CLionProjects/cube
 
+//The directory containing a CMake configuration file for string.
+string_DIR:PATH=string_DIR-NOTFOUND
+
 
 ########################
 # INTERNAL cache entries
